@@ -41,7 +41,23 @@
 			top: 2px;
 			right: 10px;
 			height: 740px;
-			width: 325px;
+			width: 265px;
+			padding: 15px 15px;
+			margin: 0;
+			/* Add styles to match Leaflet UI elements */
+			background: rgba(256, 256, 256, .8);
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			z-index: 800;
+		}
+
+		#about {
+			position: absolute;
+			top: 2px;
+			left: 10px;
+			height: 330px;
+			width: 350px;
 			padding: 15px 15px;
 			margin: 0;
 			/* Add styles to match Leaflet UI elements */
@@ -56,7 +72,7 @@
 
 			position: absolute;
 			bottom: 10px;
-			left: 0px;
+			left: 15px;
 			height: 300;
 			width: 280px;
 			padding: 15px 15px;
@@ -67,6 +83,11 @@
 			border: 0px solid #ddd;
 			border-radius: 5px;
 			z-index: 800;
+		}
+
+		h1 {
+			font-family: 'verlag';
+			font-size: 1.30em;
 		}
 
 		p {
@@ -113,13 +134,11 @@
 
 			</div>
 
-			<section id="about">
-
-				<div id="legend">
+			<div id="legend">
 
 					<svg height="750" width="100%">
 						<!-- legend heading -->
-						<text x="15" y="15" style="font-family: 'verlag';font-size: 1.15em; font-weight: bold;">Marin County Draft Lifeform Map - 2019</text>
+						<text x="15" y="15" style="font-family: 'verlag';font-size: 1.15em; font-weight: bold;">22 Draft Lifeform Classes</text>
 						<!-- ca state parks legend element -->
 						<rect x="10" y="30" width="30" height="20" style="fill: #E8BEFF" />
 						<text x="48" y="45" style="font-size: 12px; font-family: 'fairplex';">Annual Cropland</text>
@@ -172,6 +191,10 @@
 						
 					</svg>
 				</div>
+				
+			<section id="about">
+			<h1>Marin County Draft Lifeform Map - 2019</h1>
+			<h5>The Marin County lifeform map is a 22-class land use and land cover map of Marin County, reflecting the state of the landscape in summer, 2018. The lifeform map is a draft data product and will be finalized when the fine scale vegetation map is released in 2021. The lifeform map is a foundational input to the fine scale vegetation map. The fine scale vegetation map will have significantly more floristic detail than the lifeform map; woody vegetation communities in the fine scale map will be mapped to the alliance level of the National Vegetation Classification. For more information, consult the full product datasheet (https://vegmap.press/lifeform_datasheet).</h5>
 			</section>
 
 			<svg>
@@ -183,12 +206,6 @@
 
 		</section>
 
-<svg>
-	<div id="logo">
-		<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-			<image x="1" y="50" href="Images\LogoLayout_v2.png" height="150" width="100" />
-	</div>
-</svg>
 	
 
 <!-- Load Leaflet from CDN -->
