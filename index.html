@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8 />
+	<title>Draft Lifeform Map Marin County, California</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+
+	<style>
+		@font-face {
+			font-family: 'verlag';
+			src: url(Fonts/VerlagBold.otf);
+			font-style: normal;
+			font-weight: 100
+		}
+
+		@font-face {
+			font-family: 'fairplex';
+			src: url(Fonts\FairplexWideOT.otf);
+			font-style: normal;
+			font-weight: 100;
+		}
+
+		#map {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			background: #ddd;
+			/* with transparency */
+		}
+
+		#legend {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			height: 725px;
+			width: 325px;
+			padding: 15px 15px;
+			margin: 0;
+			/* Add styles to match Leaflet UI elements */
+			background: rgba(256, 256, 256, .8);
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			z-index: 800;
+		}
+
+		#logo {
+
+			position: absolute;
+			bottom: 10px;
+			left: 0px;
+			height: 300;
+			width: 280px;
+			padding: 15px 15px;
+			margin: 0;
+			/* Add styles to match Leaflet UI elements */
+			background: rgba(256, 256, 256, 0);
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
+			border: 0px solid #ddd;
+			border-radius: 5px;
+			z-index: 800;
+		}
+
+		p {
+			font-family: 'verlag';
+			font-size: .8em;
+			color: #001323;
+		}
+
+		h5 {
+			font-family: 'fairplex';
+			font-size: .9em;
+		}
+
+		/* Don't display info block when window is very small */
+		@media screen and (max-height: 500px) {
+
+			#about {
+				display: none;
+			}
+
+			#legend {
+				display: none;
+			}
+
+			#logo {
+				display: none;
+	</style>
+
+</head>
+
+<body>
+
+	<div id='map'></div>
+
+	<section>
+		<div class="row">
+			<div id="map"></div>
+
+		</div>
+
+		<section>
+			<div class="row">
+				<div id="map"></div>
+
+			</div>
+
+			<section id="about">
+
+				<div id="legend">
+
+					<svg height="750" width="100%">
+						<!-- legend heading -->
+						<text x="15" y="15" style="font-family: 'verlag';font-size: 1.15em; font-weight: bold;">Marin County Draft Lifeform Map - 2019</text>
+						<!-- ca state parks legend element -->
+						<rect x="10" y="30" width="30" height="20" style="fill: #E8BEFF" />
+						<text x="48" y="45" style="font-size: 12px; font-family: 'fairplex';">Annual Cropland</text>
+						<rect x="10" y="60" width="30" height="20" style="fill: #53EFB7" />
+						<text x="48" y="75" style="font-size: 12px; font-family: 'fairplex';">Aquaculture</text>
+						<rect x="10" y="90" width="30" height="20" style="fill : #ffffff" />
+						<text x="48" y="105" style="font-size: 12px; font-family: 'fairplex';">Bare Soil</text>
+						<rect x="10" y="120" width="30" height="20" style="fill: #507B8B" />
+						<text x="48" y="135" style="font-size: 12px; font-family: 'fairplex';">Coastal Grassland</text>
+						<rect x="10" y="150" width="30" height="20" style="fill: #000000" />
+						<text x="48" y="165" style="font-size: 12px; font-family: 'fairplex';">Developed</text>
+						<rect x="10" y="180" width="30" height="20" style="fill: #73FFDF" />
+						<text x="48" y="195" style="font-size: 12px; font-family: 'fairplex';">Eel Grass</text>
+						<rect x="10" y="210" width="30" height="20" style="fill: #46833C" />
+						<text x="48" y="225" style="font-size: 12px; font-family: 'fairplex';">Forest and Woodland</text>
+						<rect x="10" y="240" width="30" height="20" style="fill: #89CD66" />
+						<text x="48" y="255" style="font-size: 12px; font-family: 'fairplex';">Freshwater Wetland</text>
+						<rect x="10" y="270" width="30" height="20" style="fill: #CF4B55" />
+						<text x="48" y="285" style="font-size: 12px; font-family: 'fairplex';">Intensively Managed Hayfield</text>
+						<rect x="10" y="300" width="30" height="20" style="fill: #FFBEE8" />
+						<text x="48" y="315" style="font-size: 12px; font-family: 'fairplex';">Irrigated Pasture</text>
+						<rect x="10" y="330" width="30" height="20" style="fill: #FF0000" />
+						<text x="48" y="345" style="font-size: 12px; font-family: 'fairplex';">Major Roads</text>
+						<rect x="10" y="360" width="30" height="20" style="fill: #E69800" />
+						<text x="48" y="375" style="font-size: 12px; font-family: 'fairplex';">Non-native Forest & Woodland</text>
+						<rect x="10" y="390" width="30" height="20" style="fill: #A87000" />
+						<text x="48" y="405" style="font-size: 12px; font-family: 'fairplex';">Non-native Herbaceous</text>
+						<rect x="10" y="420" width="30" height="20" style="fill: #FFD37F" />
+						<text x="48" y="435" style="font-size: 12px; font-family: 'fairplex';">Non-native Shrub</text>
+						<rect x="10" y="450" width="30" height="20" style="fill: #A80084" />
+						<text x="48" y="465" style="font-size: 12px; font-family: 'fairplex';">Nursery or Ornamental Horticulture Area</text>
+						<text x="14" y="700" style="font-size: 12px; font-family: 'verlag';">Map updated 12/7/2020</text>
+					</svg>
+				</div>
+			</section>
+
+			<svg>
+				<div id="logo">
+					<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+						<image x="1" y="50" href="Images\LogoLayout_v2.png" height="150" width="100" />
+				</div>
+			</svg>
+
+		</section>
+
+<svg>
+	<div id="logo">
+		<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<image x="1" y="50" href="Images\LogoLayout_v2.png" height="150" width="100" />
+	</div>
+</svg>
+	
+
+<!-- Load Leaflet from CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+ 
+  <!-- Esri Leaflet and Esri Leaflet Vector -->
+  <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+  <script src="https://unpkg.com/esri-leaflet-vector@3/dist/esri-leaflet-vector.js"></script>
+	<script src="GeoJsons/MarinBnd.js"></script>
+	
+
+	<script>
+		// options to be used when creating the map
+		var options = {
+		center: [38.0828, -122.7551],
+		zoom: 10.4,
+		zoomSnap: .1,
+		zoomControl: true
+	}
+
+	var map = L.map('map', options);
+	
+	// requests some map tiles
+	var tiles = L.tileLayer( 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community');
+	
+	// add those tiles to our map element
+	map.addLayer(tiles);
+
+	const countyLayer = L.geoJson(county, {
+		style: function (feature) {
+			return {
+				color: '#000000', // White
+				// Make line weight larger than the county outline
+				weight: .5,
+				fillOpacity: 0.1,
+				fillColor: '#CCCCCC'
+			};
+		}
+	});
+	countyLayer.addTo(map);
+
+	L.esri.Vector.vectorTileLayer("https://tiles.arcgis.com/tiles/tdQLEzq0fgVElWN3/arcgis/rest/services/Draft_Lifeform_Vector_Tile_Package_12_20_19/VectorTileServer", {
+
+}).addTo(map);
+
+// zoom to fit screen
+const macoZoom = countyLayer.getBounds()
+
+// fit bounds to extent of marin open space lands
+map.fitBounds(macoZoom, {
+	maxzoom: 8
+});
+
+</script>
+
+</body>
+
+</html>
