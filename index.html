@@ -5,7 +5,6 @@
 	<meta charset=utf-8 />
 	<title>Draft Lifeform Map Marin County, California</title>
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
@@ -231,6 +230,7 @@
 		<!-- Esri Leaflet and Esri Leaflet Vector -->
 		<script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
 		<script src="https://unpkg.com/esri-leaflet-vector@3/dist/esri-leaflet-vector.js"></script>
+		<!-- Link to marin county boundary js file -->
 		<script src="GeoJsons/MarinBnd.js"></script>
 
 
@@ -251,25 +251,28 @@
 			// add those tiles to our map element
 			map.addLayer(tiles);
 
+			// add county layer to map
 			const countyLayer = L.geoJson(county, {
 				style: function (feature) {
 					return {
-						opacity: 0,
-						fillOpacity: 0,
+						opacity: 0, // set stroke opacity to zero
+						fillOpacity: 0 // set fill opacity to zero
 						
 					};
 				}
 			});
 			countyLayer.addTo(map);
 
+			// requesst public vector tile layer from ArcGIS Online
 			L.esri.Vector.vectorTileLayer("https://tiles.arcgis.com/tiles/tdQLEzq0fgVElWN3/arcgis/rest/services/Draft_Lifeform_Vector_Tile_Package_12_20_19/VectorTileServer", {
 
+			// add service to map
 			}).addTo(map);
 
-			// zoom to fit screen
+			// make county layer zoom to fit screen
 			const macoZoom = countyLayer.getBounds()
 
-			// fit bounds to extent of marin open space lands
+			// fit bounds to extent marin county boundary
 			map.fitBounds(macoZoom, {
 				maxzoom: 8
 			});
