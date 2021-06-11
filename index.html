@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset=utf-8 />
-	<title>Draft Lifeform Map Marin County, California</title>
+	<title>Lifeform Map Marin County, California</title>
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -203,8 +203,8 @@
 			</div>
 
 			<section id="about">
-				<h1>Marin County Draft Lifeform Map - 2019</h1>
-				<h5>The Marin County lifeform map is a 22-class land use and land cover map of Marin County, reflecting the state of the landscape in summer, 2018. The lifeform map is a draft data product and will be finalized when the fine scale vegetation map is released in 2021. The lifeform map is a foundational input to the fine scale vegetation map. The fine scale vegetation map will have significantly more floristic detail than the lifeform map; woody vegetation communities in the fine scale map will be mapped to the alliance level of the National Vegetation Classification. For more information, consult the <a href="https://vegmap.press/marin_vegmap_datasheet">full product datasheet.</a></h5>
+				<h1>Marin County Lifeform Map - 2019</h1>
+				<h5>The Marin County lifeform map is a 26-class land use and land cover map of Marin County, reflecting the state of the landscape in summer, 2018.  This product is a simplification of the fine scale vegetation map, with a fraction of the total map classes.  The fine scale vegetation map has significantly more floristic detail than the lifeform map; woody vegetation communities in the 82-class fine scale map are mapped to the alliance level of the National Vegetation Classification.  The fine scale vegetation map datasheet and download information is <a href="https://vegmap.press/marin_vegmap_datasheet">here.</a></h5>
 			</section>
 
 			<svg>
@@ -257,8 +257,8 @@
 			});
 			countyLayer.addTo(map);
 
-			// requesst public vector tile layer from ArcGIS Online
-			L.esri.Vector.vectorTileLayer("https://tiles.arcgis.com/tiles/tdQLEzq0fgVElWN3/arcgis/rest/services/Draft_Lifeform_Vector_Tile_Package_12_20_19/VectorTileServer", {
+			// request public vector tile layer from ArcGIS Online
+			L.esri.Vector.vectorTileLayer("https://tiles.arcgis.com/tiles/tdQLEzq0fgVElWN3/arcgis/rest/services/Marin_County_Lifeform_Map_FINAL/VectorTileServer", {
 
 			// add service to map
 			}).addTo(map);
